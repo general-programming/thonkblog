@@ -1,5 +1,6 @@
 const express = require("express");
 const {Watcher} = require("watch-fs");
+const {exec} = require("child_process");
 const jetpack = require("fs-jetpack");
 const md = require("markdown-it")();
 
@@ -23,6 +24,14 @@ app.get("/", (req, res) =>
 
 app.get("/p/:slug", (req, res) =>
 	res.render("post.pug", { post: posts.fetchBySlug(req.params.slug) })
+);
+
+app.get("/_/webhook/github", (req, res, next) =>
+	exec("git pull", { cwd: postPath }, (err) => {
+		if (err) next(err)
+
+		res.sendStatus(200);
+	})
 );
 
 watcher.on("create", (path) =>
