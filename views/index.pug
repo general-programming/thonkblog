@@ -1,0 +1,8 @@
+extends template.pug
+
+block content
+    each post in posts
+        div.post
+            h2: a(href="/p/" + post.slug) #{post.title}
+            div.meta by #{post.author.name} | #{post.published}
+            p #{post.summary()}

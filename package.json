@@ -1,0 +1,39 @@
+{
+  "name": "thonkblog",
+  "version": "1.0.0",
+  "description": "genprog's simple markdown-based blog",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "fs-jetpack": "^2.2.2",
+    "highlight.js": "^9.15.6",
+    "markdown-it": "^8.4.2",
+    "markdown-it-emoji": "^1.4.0",
+    "markdown-it-front-matter": "git+https://github.com/hedgehog1029/markdown-it-front-matter.git",
+    "pug": "^2.0.3",
+    "watch-fs": "^0.0.7",
+    "yaml": "^1.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/general-programming/thonkblog.git"
+  },
+  "keywords": [
+    "blog",
+    "genprog",
+    "thonk"
+  ],
+  "author": "offbeatwitch",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/general-programming/thonkblog/issues"
+  },
+  "homepage": "https://github.com/general-programming/thonkblog#readme"
+}

@@ -1,0 +1,6 @@
+extends template.pug
+
+block content
+    h1 #{post.title}
+    div.meta by #{post.author.name} | published #{post.published}
+    div !{post.html_content}
