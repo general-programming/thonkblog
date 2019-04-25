@@ -1,0 +1,26 @@
+version: "3.6"
+
+services:
+    thonkblog:
+        build: .
+        image: registry.nepeat.com/thonkblog:latest
+        volumes:
+            - /srv/blog/posts:/app/posts
+        ports:
+            - "1440:1440"
+        deploy:
+            restart_policy:
+                condition: any
+                delay: 5s
+            labels:
+                traefik.enable: "true"
+                traefik.port: "1440"
+                traefik.frontend.rule: "Host:blog.generalprogramming.org"
+                traefik.docker.network: "publicweb"
+        networks:
+            - publicweb
+
+networks:
+    publicweb:
+        driver: overlay
+        external: true
