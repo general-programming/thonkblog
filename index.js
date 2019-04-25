@@ -16,11 +16,23 @@ const watcher = new Watcher({
 });
 
 app.set("view engine", "pug");
-app.use("/static", express.static(`${__dirname}/static`))
+app.use("/static", express.static(`${__dirname}/static`));
+
+app.use((req, res, next) => {
+	res.locals.pageCount = posts.countPages();
+
+	next(null);
+});
 
 app.get("/", (req, res) =>
-	res.render("index.pug", { posts: posts.fetch() })
+	res.render("index.pug", { posts: posts.fetch(0), page: 0 })
 );
+
+app.get("/:page", (req, res) => {
+	res.locals.page = parseInt(req.params.page);
+
+	res.render("index.pug", { posts: posts.fetch(res.locals.page) });
+});
 
 app.get("/p/:slug", (req, res) =>
 	res.render("post.pug", { post: posts.fetchBySlug(req.params.slug) })

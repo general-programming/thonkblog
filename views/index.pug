@@ -6,3 +6,8 @@ block content
             h2: a(href="/p/" + post.slug) #{post.title}
             div.meta by #{post.author.name} | #{post.published}
             p #{post.summary()}
+    if page > 0
+        a(href="/" + (page - 1)) &lt; Newer
+        span &nbsp;&nbsp;
+    if page < pageCount - 1
+        a(href="/" + (page + 1)) Older &gt;
