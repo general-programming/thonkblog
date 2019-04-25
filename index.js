@@ -26,7 +26,7 @@ app.get("/p/:slug", (req, res) =>
 	res.render("post.pug", { post: posts.fetchBySlug(req.params.slug) })
 );
 
-app.get("/_/webhook/github", (req, res, next) =>
+app.post("/_/webhook/github", (req, res, next) =>
 	exec("git pull", { cwd: postPath }, (err) => {
 		if (err) next(err)
 
