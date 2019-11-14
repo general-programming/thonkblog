@@ -197,6 +197,7 @@ div.meta {
 body {
 	max-width: 900px;
 	margin: auto;
+	padding: 0 10px;
 }
 
 /* genprog end */
