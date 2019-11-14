@@ -2,6 +2,7 @@ const express = require("express");
 const {Watcher} = require("watch-fs");
 const {exec} = require("child_process");
 const jetpack = require("fs-jetpack");
+const {URL} = require("url");
 const md = require("markdown-it")();
 
 const posts = require("./lib/posts");
@@ -20,6 +21,13 @@ app.use("/static", express.static(`${__dirname}/static`));
 
 app.use((req, res, next) => {
 	res.locals.pageCount = posts.countPages();
+
+	let baseUrl = `${req.protocol}://${req.get('Host')}`;
+	res.locals.asset_url = (path) =>
+		new URL("/static/" + path, baseUrl).toString();
+
+	res.locals.url_for = (post) =>
+		new URL("/p/" + post.slug, baseUrl).toString();
 
 	next(null);
 });
