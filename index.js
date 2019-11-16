@@ -17,12 +17,13 @@ const watcher = new Watcher({
 });
 
 app.set("view engine", "pug");
+app.set("server name", process.env["SERVER_NAME"] || "http://localhost:1440");
 app.use("/static", express.static(`${__dirname}/static`));
 
 app.use((req, res, next) => {
 	res.locals.pageCount = posts.countPages();
 
-	let baseUrl = `${req.protocol}://${req.get('Host')}`;
+	let baseUrl = app.get("server name");
 	res.locals.asset_url = (path) =>
 		new URL("/static/" + path, baseUrl).toString();
 

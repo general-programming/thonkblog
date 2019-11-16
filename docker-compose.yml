@@ -8,6 +8,8 @@ services:
             - /srv/blog/posts:/app/posts
         ports:
             - "1440:1440"
+        environment:
+            SERVER_NAME: "https://blog.generalprogramming.org"
         deploy:
             restart_policy:
                 condition: any
