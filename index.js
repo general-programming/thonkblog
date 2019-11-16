@@ -30,6 +30,8 @@ app.use((req, res, next) => {
 	res.locals.url_for = (post) =>
 		new URL("/p/" + post.slug, baseUrl).toString();
 
+	res.locals.baseUrl = baseUrl;
+
 	next(null);
 });
 
